@@ -1,10 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserLoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TravelController;
 
 Route::middleware('api')->group( function(){
+    Route::post('/login',[UserLoginController::class ,'login']);
     Route::get('/list',[UserController::class ,'list']);
     Route::post('/create',[UserController::class ,'create']);
     Route::put('/update/{id}',[UserController::class ,'update']);

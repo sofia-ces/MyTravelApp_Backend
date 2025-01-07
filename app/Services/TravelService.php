@@ -20,7 +20,9 @@ class TravelService
             'start_date'  => 'required',
             'end_date'    => 'required',
             'description' => 'required'
+            // 'created_by'  =>  'required',
         ]);
+
 
         if ($validator->fails()) {
             return ['status' => 422, 'message' => $validator->errors()->all()];

@@ -29,7 +29,7 @@ class UserService
         ]);
 
         if ($validator->fails()) {
-            return ['errors' => $validator->errors()];
+            return ['code' => 422,'errors' => $validator->errors()];
         }
 
         $data['password'] = bcrypt($data['password']);
@@ -46,7 +46,7 @@ class UserService
         ]);
 
         if ($validator->fails()) {
-            return ['errors' => $validator->errors()];
+            return ['code' => 422,'errors' => $validator->errors()];
         }
 
         if (!empty($data['password'])) {

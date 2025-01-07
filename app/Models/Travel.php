@@ -11,6 +11,8 @@ class Travel extends Model
         'destination',
         'start_date',
         'end_date',
-        'description'
+        'description',
+         'created_by',
+        'shared_to'
     ];
 }
