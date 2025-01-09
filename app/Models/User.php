@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use Laravel\Passport\HasApiTokens;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -10,8 +10,7 @@ use Laravel\Passport\HasApiTokens as PassportHasApiTokens; // Import for Passpor
 
 class User extends Authenticatable
 {
-    use PassportHasApiTokens, HasFactory, Notifiable;
-
+    use PassportHasApiTokens, HasFactory, Notifiable, HasApiTokens;
     /**
      * The attributes that are mass assignable.
      *
@@ -21,7 +20,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role'
+        'role',
+        'remember_token'
     ];
 
     /**

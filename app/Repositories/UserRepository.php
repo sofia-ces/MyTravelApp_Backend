@@ -1,11 +1,26 @@
 <?php
 
 namespace App\Repositories;
-
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserRepository
 {
+    public function createPersonalAccessToken(User $user): ?string
+    {
+        try {
+            //$token = $user->createToken('MyApp')->plainTextToken;
+          
+            $token = $user->createToken('MyApp');
+            $plainTextToken = $token->accessToken;
+            return $plainTextToken;
+
+        } catch (\Exception $e) {
+            \Log::error("Error creating token: " . $e->getMessage());
+            return null;
+        }
+    }
+    
     public function getAll()
     {
         return User::all();

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Services;
-
+use Illuminate\Support\Facades\Auth;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Validator;
 
@@ -14,10 +14,25 @@ class UserService
         $this->repository = $repository;
     }
 
+    public function token(array $credentials): ?string //Return null if there is error
+    {
+      try {
+        if (!Auth::attempt($credentials)) {
+            return null; //Authentication failed
+        }
+        $user = Auth::user(); 
+        return $this->repository->createPersonalAccessToken($user);
+      } catch (\Exception $e) {
+        \Log::error("Error generating token: " . $e->getMessage());
+        return null;
+      }
+    }
     public function listUsers()
     {
         return $this->repository->getAll();
     }
+
+ 
 
     public function createUser(array $data)
     {

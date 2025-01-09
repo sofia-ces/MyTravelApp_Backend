@@ -5,14 +5,13 @@ use App\Http\Controllers\UserLoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TravelController;
 
-Route::middleware('api')->group( function(){
-    Route::post('/login',[UserLoginController::class ,'login']);
+Route::post('/login',[UserLoginController::class ,'login']);
+Route::middleware('auth:api')->group( function(){
+   
     Route::get('/list',[UserController::class ,'list']);
     Route::post('/create',[UserController::class ,'create']);
     Route::put('/update/{id}',[UserController::class ,'update']);
     Route::delete('/remove/{id}',[UserController::class ,'remove']);
-
-
 
     Route::get('/travel/list',[TravelController::class ,'list']);
     Route::post('/travel/create',[TravelController::class ,'create']);

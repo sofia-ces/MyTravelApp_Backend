@@ -51,4 +51,7 @@ class UserController extends Controller
 
         return response()->json(['code' => 400, 'message' => 'Deletion Failed']);
     }
+
+
+
 }
